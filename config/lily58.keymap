@@ -1,17 +1,24 @@
 /*
  * Copyright (c) 2020 The ZMK Contributors
- * Copyright (c) 2025 Tu Nombre
- *
  * SPDX-License-Identifier: MIT
+ *
+ * Keymap personalizado para Silakka54 (nRF52840) con comportamiento Magic Keyboard en macOS.
+ * Incluye:
+ * - Capa base con distribución QWERTY estándar (54 teclas).
+ * - Capa FN (activada con la tecla "manzana-negra") con controles multimedia, atajos Cmd+,
+ *   navegación (Home, End, PgUp, PgDn, flechas HJKL) y selección de perfiles Bluetooth (Fn+1..5).
+ * - Doble toque en Shift izquierdo para activar Caps Lock.
+ * - Tecla INS mapeada a F3 (Mission Control, cambia entre ventanas activas).
  */
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
 
 / {
     behaviors {
-        /* Doble toque en Shift izquierdo para activar Caps Lock */
+        /* Comportamiento de doble toque para Caps Lock (en Shift izquierdo) */
         td_caps: tap_dance_caps {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -32,19 +39,19 @@
 //                     | CMD  | SPACE| CTRL |  n/a   |  |  n/a  | OPT  | ENTER |  FN   |
             display-name = "Base";
             bindings = <
-&kp ESC   &kp N1 &kp N2 &kp N3 &kp N4 &kp N5                       &kp N6  &kp N7   &kp N8    &kp N9  &kp N0   &kp BSPC
-&kp TILDE &kp Q  &kp W  &kp E  &kp R  &kp T                        &kp Y   &kp U    &kp I     &kp O   &kp P    &kp F3      // INS = Mission Control
-&kp LCTRL &kp A  &kp S  &kp D  &kp F  &kp G                        &kp H   &kp J    &kp K     &kp L   &kp SEMI &kp PG_UP
-&td_caps  &kp Z  &kp X  &kp C  &kp V  &kp B  &none     &none       &kp N   &kp M    &kp COMMA &kp DOT &kp FSLH &kp PG_DN
-                        &kp LGUI &kp SPACE &kp LCTRL &none  &none  &kp LALT &kp RET  &mo 1
+&kp ESC   &kp N1 &kp N2 &kp N3 &kp N4 &kp N5                     &kp N6 &kp N7 &kp N8 &kp N9 &kp N0 &kp BSPC
+&kp TILDE &kp Q  &kp W  &kp E  &kp R  &kp T                      &kp Y  &kp U  &kp I  &kp O  &kp P  &kp F3        /* INS = Mission Control */
+&kp LCTRL &kp A  &kp S  &kp D  &kp F  &kp G                      &kp H  &kp J  &kp K  &kp L  &kp SEMI &kp PG_UP
+&td_caps  &kp Z  &kp X  &kp C  &kp V  &kp B  &none     &none     &kp N  &kp M  &kp COMMA &kp DOT &kp FSLH &kp PG_DN
+                        &kp LGUI &kp SPACE &kp LCTRL &none  &none  &kp LALT &kp RET &mo 1
             >;
         };
 
         fn_layer {
 // ------------------------------------------------------------------------------------------------------------
 // |  BT0  | BT1 | BT2 | BT3  | BT4  |  F6  |                   | VOL- | VOL+  | MUTE  | PREV | NEXT | PLAY  |
-// |  CMD+Q|CMD+W| CMD+| CMD+ | CMD+ | CMD+ |                   | HOME | END   | PGUP  | PGDN |      |       |
-// |  LEFT |DOWN | UP  | RIGHT|      |      |                   |      |       |       |      |      |       |
+// | CMD+Q |CMD+W| CMD+| CMD+ | CMD+ | CMD+ |                   | HOME | END   | PGUP  | PGDN |      |       |
+// | LEFT  | DOWN| UP  | RIGHT|      |      |                   |      |       |       |      |      |       |
 // |       |     |     |      |      |      |  n/a   |  |  n/a  |      |       |       |      |      |       |
 //                     |      |      |      |  n/a   |  |  n/a  |      |       |       |
             display-name = "FN";
@@ -53,17 +60,18 @@
 &kp LGUI(Q) &kp LGUI(W) &kp LGUI(E) &kp LGUI(R) &kp LGUI(T) &kp LGUI(Y)                       &kp HOME     &kp END      &kp PG_UP  &kp PG_DN   &trans     &trans
 &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &trans       &trans                            &trans       &trans       &trans     &trans      &trans     &trans
 &trans      &trans      &trans      &trans      &trans       &trans      &none      &none      &trans       &trans       &trans     &trans      &trans     &trans
-                        &trans      &trans      &trans      &none      &none      &trans       &trans       &trans
+                        &trans      &trans      &trans      &none      &none      &trans
             >;
         };
 
-        /* Capas reservadas para mantener la estructura */
         extra_1 {
             status = "reserved";
         };
+
         extra_2 {
             status = "reserved";
         };
+
         extra_3 {
             status = "reserved";
         };
