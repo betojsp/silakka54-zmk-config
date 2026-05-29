@@ -30,7 +30,7 @@
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
+       default_layer {
 // ------------------------------------------------------------------------------------------------------------
 // |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |  DEL  |
 // |   ~   |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   |  INS  |
@@ -47,17 +47,17 @@
             >;
         };
 
-        fn_layer {
+                fn_layer {
 // ------------------------------------------------------------------------------------------------------------
 // |  BT0  | BT1 | BT2 | BT3  | BT4  |  F6  |                   | VOL- | VOL+  | MUTE  | PREV | NEXT | PLAY  |
 // | CMD+Q |CMD+W| CMD+| CMD+ | CMD+ | CMD+ |                   | HOME | END   | PGUP  | PGDN |      |       |
 // | LEFT  | DOWN| UP  | RIGHT|      |      |                   |      |       |       |      |      |       |
 // |       |     |     |      |      |      |  n/a   |  |  n/a  |      |       |       |      |      |       |
-//                     |      |      |      |  n/a   |  |  n/a  |      |       |       |
+//                     |      |      |      |  n/a   |  ｜  n/a  |      |       |       |
             display-name = "FN";
             bindings = <
 &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &kp F6                       &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE &kp C_PREV &kp C_NEXT &kp C_PP
-&kp LGUI(Q) &kp LGUI(W) &kp LGUI(E) &kp LGUI(R) &kp LGUI(T) &kp LGUI(Y)                       &kp HOME     &kp END      &kp PG_UP  &kp PG_DN   &bt BT_NXT &bt BT_CLR
+&kp LGUI(Q) &kp LGUI(W) &kp LGUI(E) &kp LGUI(R) &kp LGUI(T) &kp LGUI(Y)                       &kp HOME     &kp END      &kp PG_UP  &kp PG_DN   &trans     &trans
 &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &trans       &trans                            &trans       &trans       &trans     &trans      &trans     &trans
 &trans      &trans      &trans      &trans      &trans       &trans      &none      &none      &trans       &trans       &trans     &trans      &trans     &trans
                         &trans      &trans      &trans      &none      &none      &trans
